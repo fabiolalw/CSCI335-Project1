@@ -12,10 +12,11 @@ void getInOrder(Node* root, size_t min, size_t max, std::vector<File*>& result) 
     if(root->size_ > min)
         getInOrder(root->left_, min, max, result);
     if(root->size_ >= min && root->size_ <= max){
-        // if(swapped)
-        //     result.insert(result.end(), root->files_.rbegin(), root->files_.rend());
-        // else
-            result.insert(result.end(), root->files_.begin(), root->files_.end());
+        for(auto& file : root->files_){
+            if(file->getSize() >= min && file->getSize() <= max){
+                result.push_back(file);
+            }
+        }
     }
     if(root->size_ < max)
         getInOrder(root->right_, min, max, result);
@@ -36,20 +37,18 @@ void getInOrder(Node* root, size_t min, size_t max, std::vector<File*>& result) 
  */
 std::vector<File*> FileAVL::query(size_t min, size_t max) {
     std::vector<File*> result;
-    // bool swapped = false;
-    // if(min > max){
-    //     std::swap(min, max);
-    //     swapped = true;
-    // }
     getInOrder(root_, min, max, result);
-    // if (swapped) 
-    //     std::reverse(result.begin(), result.end());
     return result;
 }
 
+// // Default constructor
+// FileTrie:FileTrie(){
+
+// }
+
  // Add file, ignore case
 void FileTrie::addFile(File* f){
-
+ 
 }
 
 // Search
@@ -57,8 +56,7 @@ std::unordered_set<File*> FileTrie::getFilesWithPrefix(const std::string& prefix
     return std::unordered_set<File*>();
 }
 
-//Destructor
-FileTrie::~FileTrie(){
-    delete head;
-}
+// //Destructor
+// FileTrie::~FileTrie(){
+// }
 
