@@ -57,11 +57,8 @@ std::unordered_set<File*> FileTrie::getFilesWithPrefix(const std::string& prefix
     return std::unordered_set<File*>();
 }
 
-        // Destructor
-// FileTrie::~FileTrie(){
-//     delete head;
-// }
-
-int main(){
-    return 0;
+//Destructor
+FileTrie::~FileTrie(){
+    delete head;
 }
+
