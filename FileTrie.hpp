@@ -15,10 +15,8 @@
 
 struct FileTrieNode {   
     char stored;
-
     std::unordered_set<File*> matching;
     std::unordered_map<char, FileTrieNode*> next;
-
     FileTrieNode(const char& c = ' ', File* to_add = nullptr) : stored{c}, matching{}, next{} {
         if (to_add) { matching.insert(to_add); }
     }
@@ -27,7 +25,6 @@ struct FileTrieNode {
 class FileTrie {
     private:
         FileTrieNode* head;
-    
     public:
         // Default constructor
         FileTrie();

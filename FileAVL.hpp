@@ -26,14 +26,14 @@ struct Node {
 
 class FileAVL {
    public:
-   std::vector<File*> query(size_t min, size_t max);
-   FileAVL();
-   ~FileAVL();
-   void insert(File* target);   
-   int height(Node* n) const;
-   void displayLevelOrder() const;
-   void displayInOrder() const;
-   int size() const;
+      std::vector<File*> query(size_t min, size_t max);
+      FileAVL();
+      ~FileAVL();
+      void insert(File* target);   
+      int height(Node* n) const;
+      void displayLevelOrder() const;
+      void displayInOrder() const;
+      int size() const;
 
    private:
       static const int ALLOWED_IMBALANCE = 1;
