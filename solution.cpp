@@ -80,14 +80,14 @@ std::unordered_set<File*> FileTrie::getFilesWithPrefix(const std::string& prefix
         character = std::tolower(character);
     
     FileTrieNode* current = head;
-    // for(auto&character : lowerCasePrefix){
-    //     if(current->next.find(character) != current->next.end()){
-    //         current = current->next[character];
-    //     }
-    //     else{return;}
-    //     current = current->next[character];
-    //  }
-    // return current->matching;
+    for(auto&character : lowerCasePrefix){
+        if(current->next.find(character) != current->next.end()){
+            current = current->next[character];
+        }
+        else{return;}
+        current = current->next[character];
+     }
+    return current->matching;
 }
 
 //Destructor
