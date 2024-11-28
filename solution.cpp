@@ -51,6 +51,12 @@ void FileTrie::addFile(File* f){
     for(auto&character : f->getName())
         character = std::tolower(character);
     head->matching.insert(f);
+    for(auto&character : f->getName()){
+        if(head->next.find(character) == head->next.end()){
+            head->next[character] = new FileTrieNode(character);
+        }
+        head = head->next[character];
+    }
    // std::cout << head->matching.size() << std::endl;
 }
 
