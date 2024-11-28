@@ -1,7 +1,13 @@
+/*
+Author: Fabiola Li Wu
+Course: CSCI-33500
+Date: 11/27/2024
+
+Solution.cpp implements the FileTrie class' functions and some other functions
+*/
 #include "FileAVL.hpp"
 #include "File.hpp"
 #include "FileTrie.hpp"
-#include <iostream>
 
 // ALL YOUR CODE SHOULD BE IN THIS FILE. NO MODIFICATIONS SHOULD BE MADE TO FILEAVL / FILE CLASSES
 // You are permitted to make helper functions (and most likely will need to)

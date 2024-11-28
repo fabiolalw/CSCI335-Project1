@@ -12,11 +12,13 @@
 #include <iostream>
 #include <functional>
 #include "File.hpp"
+#include <vector>
 
 struct FileTrieNode {   
     char stored;
     std::unordered_set<File*> matching;
     std::unordered_map<char, FileTrieNode*> next;
+    // std::vector<FileTrieNode*> vector;
     FileTrieNode(const char& c = ' ', File* to_add = nullptr) : stored{c}, matching{}, next{} {
         if (to_add) { matching.insert(to_add); }
     }
