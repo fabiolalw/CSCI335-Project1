@@ -39,6 +39,6 @@ class FileTrie {
         ~FileTrie();
 
 
-        std::unordered_set<File*> getHeadMatchingFiles(){return head->matching;}
-        size_t getHeadMactchingSize(){return head->matching.size();}
+//         std::unordered_set<File*> getHeadMatchingFiles(){return head->matching;}
+//         size_t getHeadMactchingSize(){return head->matching.size();}
 };
