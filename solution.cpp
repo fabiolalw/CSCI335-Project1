@@ -41,10 +41,9 @@ std::vector<File*> FileAVL::query(size_t min, size_t max) {
     return result;
 }
 
-// // Default constructor
-// FileTrie:FileTrie(){
-
-// }
+// Default constructor
+FileTrie::FileTrie(){
+}
 
  // Add file, ignore case
 void FileTrie::addFile(File* f){
@@ -56,7 +55,7 @@ std::unordered_set<File*> FileTrie::getFilesWithPrefix(const std::string& prefix
     return std::unordered_set<File*>();
 }
 
-// //Destructor
-// FileTrie::~FileTrie(){
-// }
+//Destructor
+FileTrie::~FileTrie(){
+}
 
