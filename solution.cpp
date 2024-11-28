@@ -63,10 +63,10 @@ void FileTrie::addFile(File* f){
     FileTrieNode* current = head;
     for(auto&character : lowerCaseName){
         if(current->next.find(character) == current->next.end()){
-            current->next[character] = new FileTrieNode(character, f);
+            current->next[character] = new FileTrieNode(character);
         }
         current = current->next[character];
-        
+        current->matching.insert(f);
     }
 }
 
