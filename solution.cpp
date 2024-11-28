@@ -1,7 +1,6 @@
 #include "FileAVL.hpp"
 #include "File.hpp"
 #include "FileTrie.hpp"
-//#include <iostream>
 
 // ALL YOUR CODE SHOULD BE IN THIS FILE. NO MODIFICATIONS SHOULD BE MADE TO FILEAVL / FILE CLASSES
 // You are permitted to make helper functions (and most likely will need to)
@@ -53,7 +52,7 @@ void FileTrie::addFile(File* f){
     head->matching.insert(f);
     for(auto&character : f->getName()){
         if(head->next.find(character) == head->next.end()){
-            head->next[character] = new FileTrieNode(character);
+            head->next[character] = new FileTrieNode(character, f);
         }
         head = head->next[character];
     }
@@ -92,19 +91,3 @@ std::unordered_set<File*> FileTrie::getFilesWithPrefix(const std::string& prefix
 //Destructor
 FileTrie::~FileTrie(){
 }
-
-// int main(){
-//     File first("FIrstFile.txt", "This is the first file");
-//     File second("SecondFile.txt", "This is the second file");
-//     File third("ThirdFile.txt", "This is the third file");
-//     File forth("FourthFile.txt", "This is the fourth file");
-//     FileTrie trie;
-//     trie.addFile(&first);
-//     trie.addFile(&second);
-//     trie.addFile(&third);
-//     trie.addFile(&forth);
-    
-
-
-//     return 0;
-// }
