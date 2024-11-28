@@ -81,12 +81,11 @@ std::unordered_set<File*> FileTrie::getFilesWithPrefix(const std::string& prefix
     
     FileTrieNode* current = head;
     for(auto&character : lowerCasePrefix){
-        if(current->next.find(character) != current->next.end()){
-            current = current->next[character];
+        if(current->next.find(character) == current->next.end()){
+            return {};
         }
-        else{return;}
         current = current->next[character];
-     }
+    }
     return current->matching;
 }
 
