@@ -57,7 +57,6 @@ void FileTrie::addFile(File* f){
         }
         head = head->next[character];
     }
-   // std::cout << head->matching.size() << std::endl;
 }
 
 // The implementation of a prefix trie using for efficient prefix search. This trie differs from a standard trie in that at each node, 
