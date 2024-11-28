@@ -1,6 +1,7 @@
 #include "FileAVL.hpp"
 #include "File.hpp"
 #include "FileTrie.hpp"
+//#include <iostream>
 
 // ALL YOUR CODE SHOULD BE IN THIS FILE. NO MODIFICATIONS SHOULD BE MADE TO FILEAVL / FILE CLASSES
 // You are permitted to make helper functions (and most likely will need to)
@@ -47,15 +48,59 @@ FileTrie::FileTrie(){
 
  // Add file, ignore case
 void FileTrie::addFile(File* f){
- 
+    for(auto&character : f->getName())
+        character = std::tolower(character);
+    head->matching.insert(f);
+   // std::cout << head->matching.size() << std::endl;
 }
 
+// The implementation of a prefix trie using for efficient prefix search. This trie differs from a standard trie in that at each node, 
+//it will hold all files whose names begin with the prefix defined by the path leading to that node. This is a significant trade-off of 
+//space for time.
+// In struct FileTrieNode:
+// - stored is the character that leads to the node. It is not actually needed, but it's useful for debugging.
+// - matching is the set of pointers to Files whose filenames start with the prefix corresponding to the path leading to the node.
+// - next is the set of the node's child pointers. Each node can have a child for each letter, so we use a map to efficiently map each 
+//letter to the corresponding child node.
+// Additional specifications:
+// - The root, representing the empty string (0 characters), should hold a pointer to every File.
+// - The search should support a filename and extension, e.g. importantstuff.doc
+// - The actual file system is not part of this project, so there are no file paths or directories, just filenames with extensions.
+// - Characters allowed are a-z, 0-9, and . (period).
+// - The search should be case-insensitive.
 // Search
 std::unordered_set<File*> FileTrie::getFilesWithPrefix(const std::string& prefix) const{
-    return std::unordered_set<File*>();
+    std::string lowerCasePrefix = prefix;
+    for(auto&character : lowerCasePrefix)
+        character = std::tolower(character);
+    
+    FileTrieNode* current = head;
+    for(auto&character : lowerCasePrefix){
+        if(current->next.find(character) != current->next.end()){
+            current = current->next[character];
+        }
+        else{return;}
+        current = current->next[character];
+     }
+    return current->matching;
 }
 
 //Destructor
 FileTrie::~FileTrie(){
 }
 
+// int main(){
+//     File first("FIrstFile.txt", "This is the first file");
+//     File second("SecondFile.txt", "This is the second file");
+//     File third("ThirdFile.txt", "This is the third file");
+//     File forth("FourthFile.txt", "This is the fourth file");
+//     FileTrie trie;
+//     trie.addFile(&first);
+//     trie.addFile(&second);
+//     trie.addFile(&third);
+//     trie.addFile(&forth);
+    
+
+
+//     return 0;
+// }

@@ -38,5 +38,3 @@ class FileTrie {
         // Destructor
         ~FileTrie();
 };
-
-//extra credit
