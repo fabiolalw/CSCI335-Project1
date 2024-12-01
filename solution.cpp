@@ -8,7 +8,6 @@ Solution.cpp implements the FileTrie class' functions and some other functions
 #include "FileAVL.hpp"
 #include "File.hpp"
 #include "FileTrie.hpp"
-// #include <iostream>
 
 // ALL YOUR CODE SHOULD BE IN THIS FILE. NO MODIFICATIONS SHOULD BE MADE TO FILEAVL / FILE CLASSES
 // You are permitted to make helper functions (and most likely will need to)
@@ -62,32 +61,13 @@ void FileTrie::addFile(File* f){
     }
     head->matching.insert(f);
     FileTrieNode* current = head;
-    // for(auto&character : lowerCaseName){
-    //     FileTrieNode* found = nullptr;
-    //     for(int i = 0; i < current->next.size(); i++){
-    //         if(current->next[i]->stored == character){
-    //             found = current->next[i];
-    //             return;
-    //         }
-    //     }
-
-    //     if(found == nullptr){
-    //         current->next.push_back(new FileTrieNode(character));
-    //         found = current->next[current->next.size()-1];
-    //     }
-    //     current = found;
-    //     current->matching.insert(f);
-
-
-
-
-
+    for(auto&character : lowerCaseName){
         // if(current->next.find(character) == current->next.end()){
         //     current->next[character] = new FileTrieNode(character);
         // }
         // current = current->next[character];
         // current->matching.insert(f);
-    // }
+    }
 }
 
 // The implementation of a prefix trie using for efficient prefix search. This trie differs from a standard trie in that at each node, 
@@ -106,32 +86,19 @@ void FileTrie::addFile(File* f){
 // - The search should be case-insensitive.
 // Search
 std::unordered_set<File*> FileTrie::getFilesWithPrefix(const std::string& prefix) const{
-    // std::string lowerCasePrefix = prefix;
-    // for (char& character : lowerCasePrefix) {
-    //     character = std::tolower(character);
-    // }
+    std::string lowerCasePrefix = prefix;
+    for (char& character : lowerCasePrefix) {
+        character = std::tolower(character);
+    }
     
-    // FileTrieNode* current = head;
-    // for(auto&character : lowerCasePrefix){
-    //     FileTrieNode* found = nullptr;
-    //     for(int i = 0; i < current->next.size(); i++){
-    //         if(current->next[i]->stored == character){
-    //             found = current->next[i];
-    //             break;
-    //         }
-    //     }
-    //     if(found == nullptr){
-    //         return {};
-    //     }
-    //     current = found;
-    //     // if(current->next.find(character) == current->next.end()){
-    //     //     return {};
-    //     // }
-    //     // current = current->next[character];
-    // }
-    // return current->matching;
-
-    return std::unordered_set<File*> ();
+    FileTrieNode* current = head;
+    for(auto&character : lowerCasePrefix){
+        // if(current->next.find(character) == current->next.end()){
+        //     return {};
+        // }
+        // current = current->next[character];
+    }
+    return current->matching;
 }
 
 //Destructor
