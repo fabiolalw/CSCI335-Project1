@@ -8,6 +8,7 @@ Solution.cpp implements the FileTrie class' functions and some other functions
 #include "FileAVL.hpp"
 #include "File.hpp"
 #include "FileTrie.hpp"
+// #include <iostream>
 
 // ALL YOUR CODE SHOULD BE IN THIS FILE. NO MODIFICATIONS SHOULD BE MADE TO FILEAVL / FILE CLASSES
 // You are permitted to make helper functions (and most likely will need to)
@@ -111,7 +112,7 @@ std::unordered_set<File*> FileTrie::getFilesWithPrefix(const std::string& prefix
         for(int i = 0; i < current->next.size(); i++){
             if(current->next[i]->stored == character){
                 found = current->next[i];
-                return;
+                break;
             }
         }
         if(found == nullptr){
