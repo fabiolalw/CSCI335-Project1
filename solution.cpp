@@ -63,24 +63,20 @@ void FileTrie::addFile(File* f){
     head->matching.insert(f);
     FileTrieNode* current = head;
     for(auto&character : lowerCaseName){
-        bool found = false;
-        for(int i = 0; i < current->next.size(); i++){
-            if(current->next[i]->stored == character){
-                current = current->next[i];
-                found = true;
-                break;
-            }
-        }
-        if(!found){
-            FileTrieNode* newNode = new FileTrieNode(character);
-            current->next.push_back(newNode);
-            current = newNode;
-        }
-        // if(current->next.find(character) == current->next.end()){
-        //     current->next[character] = new FileTrieNode(character);
+        // bool found = false;
+        // for(int i = 0; i < current->next.size(); i++){
+        //     if(current->next[i]->stored == character){
+        //         current = current->next[i];
+        //         found = true;
+        //         break;
+        //     }
         // }
-        // current = current->next[character];
-        current->matching.insert(f);
+        // if(!found){
+        //     FileTrieNode* newNode = new FileTrieNode(character);
+        //     current->next.push_back(newNode);
+        //     current = newNode;
+        // }
+        // current->matching.insert(f);
     }
 }
 
@@ -107,22 +103,17 @@ std::unordered_set<File*> FileTrie::getFilesWithPrefix(const std::string& prefix
     
     FileTrieNode* current = head;
     for(auto&character : lowerCasePrefix){
-        // if(current->next.find(character) == current->next.end()){
+        bool found = false;
+        // for(int i = 0; i < current->next.size(); i++){
+        //     if(current->next[i]->stored == character){
+        //         current = current->next[i];
+        //         found = true;
+        //         break;
+        //     }
+        // }
+        // if(!found){
         //     return {};
         // }
-        // current = current->next[character];
-
-        bool found = false;
-        for(int i = 0; i < current->next.size(); i++){
-            if(current->next[i]->stored == character){
-                current = current->next[i];
-                found = true;
-                break;
-            }
-        }
-        if(!found){
-            return {};
-        }
     }
     return current->matching;
 }
