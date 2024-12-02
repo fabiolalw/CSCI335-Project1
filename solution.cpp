@@ -8,6 +8,7 @@ Solution.cpp implements the FileTrie class' functions and some other functions
 #include "FileAVL.hpp"
 #include "File.hpp"
 #include "FileTrie.hpp"
+// #include <iostream>
 
 // ALL YOUR CODE SHOULD BE IN THIS FILE. NO MODIFICATIONS SHOULD BE MADE TO FILEAVL / FILE CLASSES
 // You are permitted to make helper functions (and most likely will need to)
@@ -71,8 +72,9 @@ void FileTrie::addFile(File* f){
             }
         }
         if(!found){
-            current->next.push_back(new FileTrieNode(character));
-            current = current->next[current->next.size()-1];
+            FileTrieNode* newNode = new FileTrieNode(character);
+            current->next.push_back(newNode);
+            current = newNode;
         }
         // if(current->next.find(character) == current->next.end()){
         //     current->next[character] = new FileTrieNode(character);
@@ -105,6 +107,11 @@ std::unordered_set<File*> FileTrie::getFilesWithPrefix(const std::string& prefix
     
     FileTrieNode* current = head;
     for(auto&character : lowerCasePrefix){
+        // if(current->next.find(character) == current->next.end()){
+        //     return {};
+        // }
+        // current = current->next[character];
+
         bool found = false;
         for(int i = 0; i < current->next.size(); i++){
             if(current->next[i]->stored == character){
@@ -116,16 +123,13 @@ std::unordered_set<File*> FileTrie::getFilesWithPrefix(const std::string& prefix
         if(!found){
             return {};
         }
-        // if(current->next.find(character) == current->next.end()){
-        //     return {};
-        // }
-        // current = current->next[character];
     }
     return current->matching;
 }
 
 //Destructor
 FileTrie::~FileTrie(){
+    delete(head);
 }
 
 // int main(){
@@ -143,7 +147,7 @@ FileTrie::~FileTrie(){
 //     // for(auto&file : matching){
 //     //     std::cout << file->getName() << std::endl;
 //     // }
-//     std::unordered_set<File*> prefixFiles = trie.getFilesWithPrefix("A");
+//     std::unordered_set<File*> prefixFiles = trie.getFilesWithPrefix("");
 //     std::cout << prefixFiles.size() << std::endl;
 //     for(auto&file : prefixFiles){
 //         std::cout << file->getName() << std::endl;
