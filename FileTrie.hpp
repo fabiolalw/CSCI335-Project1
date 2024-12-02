@@ -17,8 +17,8 @@
 struct FileTrieNode {   
     char stored;
     std::unordered_set<File*> matching;
-    //std::unordered_map<char, FileTrieNode*> next;
-    std::vector<FileTrieNode*> next;
+    std::unordered_map<char, FileTrieNode*> next;
+    //std::vector<FileTrieNode*> next;
     FileTrieNode(const char& c = ' ', File* to_add = nullptr) : stored{c}, matching{}, next{} {
         if (to_add) { matching.insert(to_add); }
     }

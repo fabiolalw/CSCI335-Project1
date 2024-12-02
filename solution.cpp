@@ -8,7 +8,6 @@ Solution.cpp implements the FileTrie class' functions and some other functions
 #include "FileAVL.hpp"
 #include "File.hpp"
 #include "FileTrie.hpp"
-// #include <iostream>
 
 // ALL YOUR CODE SHOULD BE IN THIS FILE. NO MODIFICATIONS SHOULD BE MADE TO FILEAVL / FILE CLASSES
 // You are permitted to make helper functions (and most likely will need to)
@@ -63,19 +62,10 @@ void FileTrie::addFile(File* f){
     head->matching.insert(f);
     FileTrieNode* current = head;
     for(auto&character : lowerCaseName){
-        // bool found = false;
-        // for(int i = 0; i < current->next.size(); i++){
-        //     if(current->next[i]->stored == character){
-        //         current = current->next[i];
-        //         found = true;
-        //         break;
-        //     }
+        // if(current->next.find(character) == current->next.end()){
+        //     current->next[character] = new FileTrieNode(character);
         // }
-        // if(!found){
-        //     FileTrieNode* newNode = new FileTrieNode(character);
-        //     current->next.push_back(newNode);
-        //     current = newNode;
-        // }
+        // current = current->next[character];
         // current->matching.insert(f);
     }
 }
@@ -103,24 +93,16 @@ std::unordered_set<File*> FileTrie::getFilesWithPrefix(const std::string& prefix
     
     FileTrieNode* current = head;
     for(auto&character : lowerCasePrefix){
-        bool found = false;
-        // for(int i = 0; i < current->next.size(); i++){
-        //     if(current->next[i]->stored == character){
-        //         current = current->next[i];
-        //         found = true;
-        //         break;
-        //     }
-        // }
-        // if(!found){
+        // if(current->next.find(character) == current->next.end()){
         //     return {};
         // }
+        // current = current->next[character];
     }
     return current->matching;
 }
 
 //Destructor
 FileTrie::~FileTrie(){
-    delete(head);
 }
 
 // int main(){
@@ -138,7 +120,7 @@ FileTrie::~FileTrie(){
 //     // for(auto&file : matching){
 //     //     std::cout << file->getName() << std::endl;
 //     // }
-//     std::unordered_set<File*> prefixFiles = trie.getFilesWithPrefix("");
+//     std::unordered_set<File*> prefixFiles = trie.getFilesWithPrefix("A");
 //     std::cout << prefixFiles.size() << std::endl;
 //     for(auto&file : prefixFiles){
 //         std::cout << file->getName() << std::endl;
