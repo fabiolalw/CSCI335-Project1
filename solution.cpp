@@ -62,18 +62,18 @@ void FileTrie::addFile(File* f){
     head->matching.insert(f);
     FileTrieNode* current = head;
     for(auto&character : lowerCaseName){
-        FileTrieNode* found = nullptr;
+        bool found = false;
         for(int i = 0; i < current->next.size(); i++){
             if(current->next[i]->stored == character){
-                found = current->next[i];
+                current = current->next[i];
+                found = true;
                 break;
             }
         }
-        if(found == nullptr){
-            current->next.push_back(new FileTrieNode(character, f));
-            found = current->next[current->next.size()-1];
+        if(!found){
+            current->next.push_back(new FileTrieNode(character));
+            current = current->next[current->next.size()-1];
         }
-        current = found;
         // if(current->next.find(character) == current->next.end()){
         //     current->next[character] = new FileTrieNode(character);
         // }
@@ -105,18 +105,17 @@ std::unordered_set<File*> FileTrie::getFilesWithPrefix(const std::string& prefix
     
     FileTrieNode* current = head;
     for(auto&character : lowerCasePrefix){
-        FileTrieNode* found = nullptr;
+        bool found = false;
         for(int i = 0; i < current->next.size(); i++){
             if(current->next[i]->stored == character){
-                found = current->next[i];
+                current = current->next[i];
+                found = true;
                 break;
             }
         }
-        if(found == nullptr){
+        if(!found){
             return {};
         }
-        current = found;
-
         // if(current->next.find(character) == current->next.end()){
         //     return {};
         // }
