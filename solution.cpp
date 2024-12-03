@@ -63,6 +63,8 @@ void FileTrie::addFile(File* f){
     FileTrieNode* current = head;
     for(auto&character : lowerCaseName){
         FileTrieNode* found = nullptr;
+
+        // find the node in the vector
         for(auto&node : current->next){
             if(node->stored == character){
                 found = node;
@@ -76,8 +78,8 @@ void FileTrie::addFile(File* f){
         }
         current = found;
         current->matching.insert(f);
-       
 
+        // this ia for map
         // if(current->next.find(character) == current->next.end()){
         //     current->next[character] = new FileTrieNode(character);
         // }
@@ -110,6 +112,8 @@ std::unordered_set<File*> FileTrie::getFilesWithPrefix(const std::string& prefix
     FileTrieNode* current = head;
     for(auto&character : lowerCasePrefix){
         FileTrieNode* found = nullptr;
+
+        // find the node in the vector 
         for(auto&node : current->next){
             if(node->stored == character){
                 found = node;
@@ -120,6 +124,8 @@ std::unordered_set<File*> FileTrie::getFilesWithPrefix(const std::string& prefix
             return {};
         }
         current = found;
+
+        // this is for map
         // if(current->next.find(character) == current->next.end()){
         //     return {};
         // }
@@ -130,6 +136,15 @@ std::unordered_set<File*> FileTrie::getFilesWithPrefix(const std::string& prefix
 
 //Destructor
 FileTrie::~FileTrie(){
+    std::queue<FileTrieNode*> deleteNode;
+    deleteNode.push(head);
+    while(!deleteNode.empty()){
+        FileTrieNode* current = deleteNode.front();
+        deleteNode.pop();
+        for(auto&node : current->next)
+            deleteNode.push(node);
+        delete current;
+    }
 }
 
 // int main(){
