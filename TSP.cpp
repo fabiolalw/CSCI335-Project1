@@ -99,7 +99,7 @@ TSP::Tour TSP::nearestNeighbor(std::list<Node> cities, const size_t& start_id){
   // tour.weights.push_back(tour.path.back().distance(tour.path.front()));
   // tour.total_distance += tour.path.back().distance(tour.path.front());
     
-  //return tour;
+  return tour;
 
   
 }
