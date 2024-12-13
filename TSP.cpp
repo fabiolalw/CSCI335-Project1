@@ -49,19 +49,20 @@ TSP::Tour TSP::nearestNeighbor(std::list<Node> cities, const size_t& start_id){
   if(cities.empty()){
     return tour;
   }
-  
-  Node currentCity = *cities.begin();
-  // find the start city and start the tour
-  for(auto& city : cities){
-    if(city.id == start_id){
-      currentCity = city;
-      tour.path.push_back(city);
-      tour.weights.push_back((size_t)0);
-      tour.total_distance = (size_t)0;
-      cities.remove(city);
-      break;
-    }
-  }
+
+  Node currentCity = *std::find_if(cities.begin(), cities.end(), [start_id](const Node& city) {return city.id == start_id;});
+  // Node currentCity = *cities.begin();
+  // // find the start city and start the tour
+  // for(auto& city : cities){
+  //   if(city.id == start_id){
+  //     currentCity = city;
+  //     tour.path.push_back(city);
+  //     tour.weights.push_back((size_t)0);
+  //     tour.total_distance = (size_t)0;
+  //     cities.remove(city);
+  //     break;
+  //   }
+  // }
 
   // while(!cities.empty()){
     // Node nearestCity = *cities.begin();
