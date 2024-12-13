@@ -53,11 +53,11 @@ TSP::Tour TSP::nearestNeighbor(std::list<Node> cities, const size_t& start_id){
   // find the start city and start the tour
   for(auto& city : cities){
     if(city.id == start_id){
-    //   tour.path.push_back(city);
+      tour.path.push_back(city);
     //   tour.weights.push_back(0);
     //   tour.total_distance = 0;
     //   cities.remove(city);
-    std::cout << "start city: " << city.id << std::endl;
+    //std::cout << "start city: " << city.id << std::endl;
     }
   }
   
