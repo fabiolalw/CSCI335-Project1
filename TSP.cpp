@@ -49,18 +49,15 @@ TSP::Tour TSP::nearestNeighbor(std::list<Node> cities, const size_t& start_id){
   if(cities.empty()){
     return tour;
   }
-
-  // all citiesa are not visited
-  // std::list<Node> notVisitedCities = cities;
   
   // find the start city and start the tour
   for(auto& city : cities){
-    if(city.id == start_id){
-      tour.path.push_back(city);
-      tour.weights.push_back(0);
-      tour.total_distance = 0;
-      cities.remove(city);
-    }
+    // if(city.id == start_id){
+    //   tour.path.push_back(city);
+    //   tour.weights.push_back(0);
+    //   tour.total_distance = 0;
+    //   cities.remove(city);
+    // }
   }
   
   // tour.path.push_back(currentCity);
