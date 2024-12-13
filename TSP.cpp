@@ -71,38 +71,37 @@ TSP::Tour TSP::nearestNeighbor(std::list<Node> cities, const size_t& start_id){
   cities.remove(currentCity);
   
 
-  // // find the nearest city and add it to the tour
+  // find the nearest city and add it to the tour
+  while(!cities.empty()){
+    Node nearestCity = cities.front();
+    size_t minDistance = currentCity.distance(nearestCity);
+    for(auto& city : cities){
+      if(currentCity.distance(city) < minDistance){
+        minDistance = currentCity.distance(city);
+        nearestCity = city;
+      }
+    }
+    tour.path.push_back(nearestCity);
+    tour.weights.push_back(minDistance);
+    tour.total_distance += minDistance;
+    cities.remove(nearestCity);
+  }
+  tour.path.push_back(tour.path.front());
+  tour.weights.push_back(tour.path.back().distance(tour.path.front()));
+  tour.total_distance += tour.path.back().distance(tour.path.front());
+
+
   // while(!notVisitedCities.empty()){
   //   Node currentCity = tour.path.back();
-  //   Node nearestCity = notVisitedCities.front();
-  //   size_t minDistance = currentCity.distance(nearestCity);
-  //   for(auto city : notVisitedCities){
-  //     if(currentCity.distance(city) < minDistance){
-  //       minDistance = currentCity.distance(city);
-  //       nearestCity = city;
-  //     }
-  //   }
+  //   Node nearestCity = getNearestCity(notVisitedCities, currentCity);
   //   tour.path.push_back(nearestCity);
-  //   tour.weights.push_back(minDistance);
-  //   tour.total_distance += minDistance;
+  //   tour.weights.push_back(currentCity.distance(nearestCity));
+  //   tour.total_distance += currentCity.distance(nearestCity);
   //   notVisitedCities.remove(nearestCity);
   // }
-  // tour.path.push_back(tour.path.front());
   // tour.weights.push_back(tour.path.back().distance(tour.path.front()));
   // tour.total_distance += tour.path.back().distance(tour.path.front());
 
-
-  // // while(!notVisitedCities.empty()){
-  // //   Node currentCity = tour.path.back();
-  // //   Node nearestCity = getNearestCity(notVisitedCities, currentCity);
-  // //   tour.path.push_back(nearestCity);
-  // //   tour.weights.push_back(currentCity.distance(nearestCity));
-  // //   tour.total_distance += currentCity.distance(nearestCity);
-  // //   notVisitedCities.remove(nearestCity);
-  // // }
-  // // tour.weights.push_back(tour.path.back().distance(tour.path.front()));
-  // // tour.total_distance += tour.path.back().distance(tour.path.front());
-
-  // return tour;
+  return tour;
   
 }
