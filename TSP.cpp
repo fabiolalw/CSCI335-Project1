@@ -81,12 +81,12 @@ TSP::Tour TSP::nearestNeighbor(std::list<Node> cities, const size_t& start_id){
   for(std::vector<Node>::iterator it = notVisited.begin(); it != notVisited.end(); it++){
     Node nearest = notVisited.front();
     size_t minDistance = nearest.distance(tour.path.back());
-    // for(auto& city : notVisited){
+    for(auto& city : notVisited){
     //   if(city.distance(nearest) < minDistance){
     //     nearest = city;
     //     minDistance = city.distance(nearest);
     //   }
-    // }
+    }
     // tour.path.push_back(nearest);
     // tour.weights.push_back(minDistance);
     // tour.total_distance += minDistance;
