@@ -44,16 +44,16 @@ std::list<Node> TSP::constructCities(const std::string& filename) {
   return cities;
 }
 
-Node TSP::getNearestCity(std::list<Node> cities, Node currentCity){
-  Node nearestCity = cities.front();
-  size_t minDistance = currentCity.distance(cities.front());
-  for(auto city : cities){
-    if(currentCity.distance(city) < minDistance){
-      minDistance = currentCity.distance(city);
-      nearestCity = city;
-    }
-  }
-  return nearestCity;
+// Node TSP::getNearestCity(std::list<Node> cities, Node currentCity){
+//   Node nearestCity = cities.front();
+//   size_t minDistance = currentCity.distance(cities.front());
+//   for(auto city : cities){
+//     if(currentCity.distance(city) < minDistance){
+//       minDistance = currentCity.distance(city);
+//       nearestCity = city;
+//     }
+//   }
+//   return nearestCity;
 }
 
 TSP::Tour TSP::nearestNeighbor(std::list<Node> cities, const size_t& start_id){

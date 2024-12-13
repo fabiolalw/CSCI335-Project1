@@ -45,7 +45,7 @@ namespace TSP {
    */
   std::list<Node> constructCities(const std::string& filename);
   
-  Node getNearestCity(std::list<Node> cities, Node currentCity);
+  //Node getNearestCity(std::list<Node> cities, Node currentCity);
   /**
  * Constructs a tour using the nearest neighbor heuristic for the traveling salesperson problem (TSP).
  * Starting from the city of the given ID, it iteratively visits the nearest unvisited city and returns to the start.
