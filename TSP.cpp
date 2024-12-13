@@ -79,8 +79,8 @@ TSP::Tour TSP::nearestNeighbor(std::list<Node> cities, const size_t& start_id){
   //   notVisited.erase(std::find(notVisited.begin(), notVisited.end(), nearest));
   // }
   for(std::vector<Node>::iterator it = notVisited.begin(); it != notVisited.end(); it++){
-    Node nearest = notVisited.front();
-    size_t minDistance = nearest.distance(tour.path.back());
+    // Node nearest = notVisited.front();
+    // size_t minDistance = nearest.distance(tour.path.back());
     // for(auto& city : notVisited){
     //   if(city.distance(nearest) < minDistance){
     //     nearest = city;
@@ -99,7 +99,7 @@ TSP::Tour TSP::nearestNeighbor(std::list<Node> cities, const size_t& start_id){
   // tour.weights.push_back(tour.path.back().distance(tour.path.front()));
   // tour.total_distance += tour.path.back().distance(tour.path.front());
     
-  return tour;
+  //return tour;
 
   
 }
