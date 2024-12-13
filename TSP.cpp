@@ -44,77 +44,45 @@ std::list<Node> TSP::constructCities(const std::string& filename) {
   return cities;
 }
 
-TSP::Tour TSP::getNearestCity(std::list<Node> cities, const size_t& start_id){
-  std::list<Node>::iterator it = cities.begin();
-    Node origin = *it;
-    std::list<Node> citiesNotVisited;
-
-    // get all the cities except the starting city
-    while(it != cities.end()){
-      if(it->id == start_id){
-        origin = *it;
-      }
-      else{
-        citiesNotVisited.push_back(*it);
-      }
-      ++it;
+Node TSP::getNearestCity(std::list<Node> cities, Node currentCity){
+  Node nearestCity = cities.front();
+  size_t minDistance = currentCity.distance(cities.front());
+  for(auto city : cities){
+    if(currentCity.distance(city) < minDistance){
+      minDistance = currentCity.distance(city);
+      nearestCity = city;
     }
-
-    Node minNode = citiesNotVisited.front();
-    size_t minWeight = origin.distance(minNode);
-    // get the nearest city
-    it = citiesNotVisited.begin();
-    while(it != citiesNotVisited.end()){
-      if(origin.distance(*it) < minWeight){
-        minNode = *it;
-      }
-      ++it;
-    }
-    
-    TSP::Tour tour;
-    tour.path.push_back(minNode);
-    tour.weights.push_back(minWeight);
-    tour.total_distance += minWeight;
-    return tour;
+  }
+  return nearestCity;
 }
+
 TSP::Tour TSP::nearestNeighbor(std::list<Node> cities, const size_t& start_id){
-  std::list<Node>::iterator it = cities.begin();
-    Node origin = *it;
-    std::list<Node> citiesNotVisited;
-
-    // get all the cities except the starting city
-    while(it != cities.end()){
-      if(it->id == start_id){
-        origin = *it;
-      }
-      else{
-        citiesNotVisited.push_back(*it);
-      }
-      ++it;
+  Tour tour;
+  if(cities.empty()){
+    return tour;
+  }
+  std::list<Node> notVisitedCities = cities;
+  
+  for(auto city : notVisitedCities){
+    if(city.id == start_id){
+      tour.path.push_back(city);
+      tour.weights.push_back(0);
+      tour.total_distance = 0;
+      notVisitedCities.remove(city);
+      break;
     }
+  }
+  while(!notVisitedCities.empty()){
+    Node currentCity = tour.path.back();
+    Node nearestCity = getNearestCity(notVisitedCities, currentCity);
+    tour.path.push_back(nearestCity);
+    tour.weights.push_back(currentCity.distance(nearestCity));
+    tour.total_distance += currentCity.distance(nearestCity);
+    notVisitedCities.remove(nearestCity);
+  }
+  tour.weights.push_back(tour.path.back().distance(tour.path.front()));
+  tour.total_distance += tour.path.back().distance(tour.path.front());
 
-    Node minNode = citiesNotVisited.front();
-    size_t minWeight = origin.distance(minNode);
-    // get the nearest city
-    it = citiesNotVisited.begin();
-    while(it != citiesNotVisited.end()){
-      if(origin.distance(*it) < minWeight){
-        minNode = *it;
-      }
-      ++it;
-    }
-
-    TSP::Tour answer;
-    TSP::Tour tour;
-    while(citiesNotVisited.size() > 0){
-      tour = getNearestCity(citiesNotVisited, start_id);
-      answer.path.push_back(tour.path.front());
-      answer.weights.push_back(tour.weights.front());
-      answer.total_distance += tour.weights.front();
-    }
-    answer.path.push_back(origin);
-    answer.weights.push_back(origin.distance(tour.path.front()));
-    answer.total_distance += origin.distance(tour.path.front());
-   
-    return answer;
+  return tour;
+  
 }
