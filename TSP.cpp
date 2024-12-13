@@ -55,7 +55,8 @@ TSP::Tour TSP::nearestNeighbor(std::list<Node> cities, const size_t& start_id){
     tour.path.push_back(currentCity);
     tour.weights.push_back(currentCity.distance(currentCity));
     tour.total_distance = currentCity.distance(currentCity);
-    cities.remove(currentCity);
+    std::list<Node> citiesCopy = cities;
+    citiesCopy.remove(currentCity);
 
 
   // while(!cities.empty()){
