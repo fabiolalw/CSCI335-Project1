@@ -50,7 +50,7 @@ TSP::Tour TSP::nearestNeighbor(std::list<Node> cities, const size_t& start_id){
     return tour;
   }
   
-  Node currentCity = cities.front();
+  Node currentCity = *cities.begin();
   // find the start city and start the tour
   for(auto& city : cities){
     if(city.id == start_id){
@@ -63,8 +63,8 @@ TSP::Tour TSP::nearestNeighbor(std::list<Node> cities, const size_t& start_id){
     }
   }
 
-  while(!cities.empty()){
-    Node nearestCity = *cities.begin();
+  // while(!cities.empty()){
+    // Node nearestCity = *cities.begin();
     // size_t minDistance = currentCity.distance(nearestCity);
     // for(auto city : cities){
     //   if(currentCity.distance(city) < minDistance){
@@ -76,7 +76,7 @@ TSP::Tour TSP::nearestNeighbor(std::list<Node> cities, const size_t& start_id){
     // tour.weights.push_back(currentCity.distance(nearestCity));
     // tour.total_distance += currentCity.distance(nearestCity);
     // cities.remove(nearestCity);
-  }
+  // }
   // tour.weights.push_back(tour.path.back().distance(tour.path.front()));
   // tour.total_distance += tour.path.back().distance(tour.path.front());
   
