@@ -63,6 +63,11 @@ TSP::Tour TSP::nearestNeighbor(std::list<Node> cities, const size_t& start_id){
   //     break;
   //   }
   // }
+  tour.path.push_back(currentCity);
+  tour.weights.push_back(currentCity.distance(currentCity));
+  tour.total_distance = 0;
+  cities.remove(currentCity);
+  
 
   // while(!cities.empty()){
     // Node nearestCity = *cities.begin();
