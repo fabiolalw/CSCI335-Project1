@@ -1,6 +1,4 @@
 #include "Time.hpp"
-#ifndef TIME_HPP
-#define TIME_HPP
 /**
  * Measures the execution time of a given function, prints the duration.
  * & returns the result of the executed function.
@@ -31,4 +29,3 @@ T Time::timeAndExecute(std::function<T(S, R)> func, const S& param1, const R& pa
   std::cout << "Finished executing in " << duration << " ms" << std::endl;
   return execution_result;
 }
-#endif
