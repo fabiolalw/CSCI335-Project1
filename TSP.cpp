@@ -45,10 +45,10 @@ std::list<Node> TSP::constructCities(const std::string& filename) {
 }
 
 TSP::Tour TSP::nearestNeighbor(std::list<Node> cities, const size_t& start_id){
-  // Tour tour;
-  // if(cities.empty()){
-  //   return tour;
-  // }
+  Tour tour;
+  if(cities.empty()){
+    return tour;
+  }
 
   // // all citiesa are not visited
   // std::list<Node> notVisitedCities = cities;
