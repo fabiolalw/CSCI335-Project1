@@ -104,13 +104,9 @@ TSP::Tour TSP::nearestNeighbor(std::list<Node> cities, const size_t& start_id){
 
   // return tour;
   Tour tour;
-    Node currentCity(0, 0, 0);
-    for (auto& city : cities) {
-        if (city.id == start_id) {
-            currentCity = city;
-            break;
-        }
-    }
+    Node currentCity = *std::find_if(cities.begin(), cities.end(), [start_id](const Node& city) {
+        return city.id == start_id;
+    });
 
     // Add the starting city to the tour
     tour.path.push_back(currentCity);
