@@ -54,7 +54,7 @@ TSP::Tour TSP::nearestNeighbor(std::list<Node> cities, const size_t& start_id){
   //find the start city
   std::vector<Node> notVisited;
   Node current = cities.front();
-  // for(auto& city : cities){
+  for(auto& city : cities){
   //   if(city.id == start_id){
   //     tour.path.push_back(current);
   //     tour.weights.push_back(0);
@@ -62,7 +62,7 @@ TSP::Tour TSP::nearestNeighbor(std::list<Node> cities, const size_t& start_id){
   //   else{
   //     notVisited.push_back(city);
   //   }
-  // }
+  }
 
   // // find the nearest ity 
   // while(!notVisited.empty()){
