@@ -43,3 +43,40 @@ std::list<Node> TSP::constructCities(const std::string& filename) {
   }
   return cities;
 }
+
+TSP::Tour TSP::nearestNeighbor(std::list<Node> cities, const size_t& start_id){
+  Tour tour;
+  Node currentCity(start_id, 0, 0);
+  for(auto& city : cities){
+    if(city.id == start_id){
+      currentCity = city;
+      tour.path.push_back(currentCity);
+      tour.weights.push_back(currentCity.distance(currentCity));
+      tour.total_distance = 0;
+      cities.remove(currentCity);
+      break;
+    }
+  }
+  while(!cities.empty()){
+    Node nearestCity = *cities.begin();
+    size_t minDistance = currentCity.distance(nearestCity);
+    for(auto& city : cities){
+      size_t distance = currentCity.distance(city);
+      if(distance < minDistance){
+        minDistance = distance;
+        nearestCity = city;
+      }
+    }
+    tour.path.push_back(nearestCity);
+    tour.weights.push_back(minDistance);
+    tour.total_distance += minDistance;
+    currentCity = nearestCity;
+    cities.remove(nearestCity);
+  }
+  tour.path.push_back(tour.path[0]);
+  tour.weights.push_back(currentCity.distance(tour.path[0]));
+  tour.total_distance += currentCity.distance(tour.path[0]);
+  return tour;
+
+  
+}
