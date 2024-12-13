@@ -87,17 +87,17 @@ TSP::Tour TSP::nearestNeighbor(std::list<Node> cities, const size_t& start_id){
         nearest = city;
       }
     }
-    // tour.path.push_back(nearest);
-    // tour.weights.push_back(minDistance);
-    // tour.total_distance += minDistance;
-    // notVisited.erase(std::find(notVisited.begin(), notVisited.end(), nearest));
-    // it = notVisited.begin();
+    tour.path.push_back(nearest);
+    tour.weights.push_back(minDistance);
+    tour.total_distance += minDistance;
+    notVisited.erase(std::find(notVisited.begin(), notVisited.end(), nearest));
+    it = notVisited.begin();
   }
 
-  // //return to the start city
-  // tour.path.push_back(tour.path.front());
-  // tour.weights.push_back(tour.path.back().distance(tour.path.front()));
-  // tour.total_distance += tour.path.back().distance(tour.path.front());
+  //return to the start city
+  tour.path.push_back(tour.path.front());
+  tour.weights.push_back(tour.path.back().distance(tour.path.front()));
+  tour.total_distance += tour.path.back().distance(tour.path.front());
     
   return tour;
 
