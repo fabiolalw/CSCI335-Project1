@@ -50,8 +50,8 @@ TSP::Tour TSP::nearestNeighbor(std::list<Node> cities, const size_t& start_id){
     return tour;
   }
 
-  // // all citiesa are not visited
-  // std::list<Node> notVisitedCities = cities;
+  // all citiesa are not visited
+  std::list<Node> notVisitedCities = cities;
   
   // // find the start city and start the tour
   // for(Node city : notVisitedCities){
