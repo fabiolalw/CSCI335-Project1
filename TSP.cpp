@@ -53,16 +53,16 @@ TSP::Tour TSP::nearestNeighbor(std::list<Node> cities, const size_t& start_id){
   // all citiesa are not visited
   std::list<Node> notVisitedCities = cities;
   
-  // // find the start city and start the tour
-  // for(Node city : notVisitedCities){
-  //   if(city.id == start_id){
-  //     tour.path.push_back(city);
-  //     tour.weights.push_back(0);
-  //     tour.total_distance = 0;
-  //     notVisitedCities.remove(city);
-  //     break;
-  //   }
-  // }
+  // find the start city and start the tour
+  for(Node city : notVisitedCities){
+    if(city.id == start_id){
+      tour.path.push_back(city);
+      tour.weights.push_back(0);
+      tour.total_distance = 0;
+      notVisitedCities.remove(city);
+      break;
+    }
+  }
 
   // // find the nearest city and add it to the tour
   // while(!notVisitedCities.empty()){
