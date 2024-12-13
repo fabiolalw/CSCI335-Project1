@@ -64,7 +64,7 @@ TSP::Tour TSP::nearestNeighbor(std::list<Node> cities, const size_t& start_id){
   }
 
   while(!cities.empty()){
-    Node nearestCity = cities.front();
+    Node nearestCity = *cities.begin();
     // size_t minDistance = currentCity.distance(nearestCity);
     // for(auto city : cities){
     //   if(currentCity.distance(city) < minDistance){
