@@ -54,7 +54,7 @@ TSP::Tour TSP::nearestNeighbor(std::list<Node> cities, const size_t& start_id){
   std::list<Node> notVisitedCities = cities;
   
   // find the start city and start the tour
-  for(Node city : cities){
+  for(auto city : cities){
     if(city.id == start_id){
       tour.path.push_back(city);
       tour.weights.push_back(0);
