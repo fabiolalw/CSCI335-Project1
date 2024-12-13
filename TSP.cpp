@@ -46,17 +46,11 @@ std::list<Node> TSP::constructCities(const std::string& filename) {
 
 TSP::Tour TSP::nearestNeighbor(std::list<Node> cities, const size_t& start_id){
   Tour tour;
-  Node currentCity(start_id, 0, 0);
-  for(auto& city : cities){
-    if(city.id == start_id){
-      currentCity = city;
-      tour.path.push_back(currentCity);
-      tour.weights.push_back(currentCity.distance(currentCity));
-      tour.total_distance = 0;
-      cities.remove(currentCity);
-      break;
-    }
-  }
+  Node currentCity = *std::find_if(cities.begin(), cities.end(), [start_id](const Node& city) { return city.id == start_id; });
+  tour.path.push_back(currentCity);
+  tour.weights.push_back(currentCity.distance(currentCity));
+  tour.total_distance = 0;
+  cities.remove(currentCity);
   while(!cities.empty()){
     Node nearestCity = *cities.begin();
     size_t minDistance = currentCity.distance(nearestCity);
