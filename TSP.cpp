@@ -71,13 +71,13 @@ TSP::Tour TSP::nearestNeighbor(std::list<Node> cities, const size_t& start_id){
         nearestCity = city;
       }
     }
-    tour.path.push_back(nearestCity);
-    tour.weights.push_back(currentCity.distance(nearestCity));
-    tour.total_distance += currentCity.distance(nearestCity);
-    cities.remove(nearestCity);
+    // tour.path.push_back(nearestCity);
+    // tour.weights.push_back(currentCity.distance(nearestCity));
+    // tour.total_distance += currentCity.distance(nearestCity);
+    // cities.remove(nearestCity);
   }
-  tour.weights.push_back(tour.path.back().distance(tour.path.front()));
-  tour.total_distance += tour.path.back().distance(tour.path.front());
+  // tour.weights.push_back(tour.path.back().distance(tour.path.front()));
+  // tour.total_distance += tour.path.back().distance(tour.path.front());
   
 
   return tour;
