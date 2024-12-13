@@ -44,6 +44,8 @@ std::list<Node> TSP::constructCities(const std::string& filename) {
   return cities;
 }
 
+
+
 TSP::Tour TSP::nearestNeighbor(std::list<Node> cities, const size_t& start_id){
   Tour tour;
   if(cities.empty()){
@@ -52,36 +54,38 @@ TSP::Tour TSP::nearestNeighbor(std::list<Node> cities, const size_t& start_id){
   //find the start city
   std::vector<Node> notVisited;
   Node current = cities.front();
-  for(auto& city : cities){
-    if(city.id == start_id){
-      tour.path.push_back(current);
-      tour.weights.push_back(0);
-    }
-    else{
-      notVisited.push_back(city);
-    }
-  }
+  // for(auto& city : cities){
+  //   if(city.id == start_id){
+  //     tour.path.push_back(current);
+  //     tour.weights.push_back(0);
+  //   }
+  //   else{
+  //     notVisited.push_back(city);
+  //   }
+  // }
 
-  // find the nearest ity 
-  while(!notVisited.empty()){
-    Node nearest = notVisited.front();
-    size_t minDistance = nearest.distance(tour.path.back());
-    for(auto& city : notVisited){
-      if(city.distance(nearest) < minDistance){
-        nearest = city;
-        minDistance = city.distance(nearest);
-      }
-    }
-    tour.path.push_back(nearest);
-    tour.weights.push_back(minDistance);
-    tour.total_distance += minDistance;
-    notVisited.erase(std::find(notVisited.begin(), notVisited.end(), nearest));
-  }
+  // // find the nearest ity 
+  // while(!notVisited.empty()){
+  //   Node nearest = notVisited.front();
+  //   size_t minDistance = nearest.distance(tour.path.back());
+  //   for(auto& city : notVisited){
+  //     if(city.distance(nearest) < minDistance){
+  //       nearest = city;
+  //       minDistance = city.distance(nearest);
+  //     }
+  //   }
+  //   tour.path.push_back(nearest);
+  //   tour.weights.push_back(minDistance);
+  //   tour.total_distance += minDistance;
+  //   notVisited.erase(std::find(notVisited.begin(), notVisited.end(), nearest));
+  // }
 
-  //return to the start city
-  tour.path.push_back(tour.path.front());
-  tour.weights.push_back(tour.path.back().distance(tour.path.front()));
-  tour.total_distance += tour.path.back().distance(tour.path.front());
+  // //return to the start city
+  // tour.path.push_back(tour.path.front());
+  // tour.weights.push_back(tour.path.back().distance(tour.path.front()));
+  // tour.total_distance += tour.path.back().distance(tour.path.front());
     
-  return tour;
+  // return tour;
+
+  
 }
