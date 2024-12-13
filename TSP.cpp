@@ -60,7 +60,6 @@ TSP::Tour TSP::nearestNeighbor(std::list<Node> cities, const size_t& start_id){
       tour.weights.push_back(0);
       tour.total_distance = 0;
       notVisitedCities.remove(city);
-      break;
     }
   }
 
