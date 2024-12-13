@@ -44,7 +44,77 @@ std::list<Node> TSP::constructCities(const std::string& filename) {
   return cities;
 }
 
+TSP::Tour TSP::getNearestCity(std::list<Node> cities, const size_t& start_id){
+  std::list<Node>::iterator it = cities.begin();
+    Node origin = *it;
+    std::list<Node> citiesNotVisited;
+
+    // get all the cities except the starting city
+    while(it != cities.end()){
+      if(it->id == start_id){
+        origin = *it;
+      }
+      else{
+        citiesNotVisited.push_back(*it);
+      }
+      ++it;
+    }
+
+    Node minNode = citiesNotVisited.front();
+    size_t minWeight = origin.distance(minNode);
+    // get the nearest city
+    it = citiesNotVisited.begin();
+    while(it != citiesNotVisited.end()){
+      if(origin.distance(*it) < minWeight){
+        minNode = *it;
+      }
+      ++it;
+    }
+    
+    TSP::Tour tour;
+    tour.path.push_back(minNode);
+    tour.weights.push_back(minWeight);
+    tour.total_distance += minWeight;
+    return tour;
+}
 TSP::Tour TSP::nearestNeighbor(std::list<Node> cities, const size_t& start_id){
-  Tour tour;
-  return tour;
+  std::list<Node>::iterator it = cities.begin();
+    Node origin = *it;
+    std::list<Node> citiesNotVisited;
+
+    // get all the cities except the starting city
+    while(it != cities.end()){
+      if(it->id == start_id){
+        origin = *it;
+      }
+      else{
+        citiesNotVisited.push_back(*it);
+      }
+      ++it;
+    }
+
+    Node minNode = citiesNotVisited.front();
+    size_t minWeight = origin.distance(minNode);
+    // get the nearest city
+    it = citiesNotVisited.begin();
+    while(it != citiesNotVisited.end()){
+      if(origin.distance(*it) < minWeight){
+        minNode = *it;
+      }
+      ++it;
+    }
+
+    TSP::Tour answer;
+    TSP::Tour tour;
+    while(citiesNotVisited.size() > 0){
+      tour = getNearestCity(citiesNotVisited, start_id);
+      answer.path.push_back(tour.path.front());
+      answer.weights.push_back(tour.weights.front());
+      answer.total_distance += tour.weights.front();
+    }
+    answer.path.push_back(origin);
+    answer.weights.push_back(origin.distance(tour.path.front()));
+    answer.total_distance += origin.distance(tour.path.front());
+   
+    return answer;
 }
