@@ -59,9 +59,8 @@ TSP::Tour TSP::nearestNeighbor(std::list<Node> cities, const size_t& start_id){
       tour.path.push_back(current);
       tour.weights.push_back(0);
     }
-    else{
+    else
       notVisited.push_back(city);
-  //   }
   }
 
   // // find the nearest ity 
