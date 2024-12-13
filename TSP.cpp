@@ -58,30 +58,30 @@ Node TSP::getNearestCity(std::list<Node> cities, Node currentCity){
 
 TSP::Tour TSP::nearestNeighbor(std::list<Node> cities, const size_t& start_id){
   Tour tour;
-  if(cities.empty()){
-    return tour;
-  }
-  std::list<Node> notVisitedCities = cities;
+  // if(cities.empty()){
+  //   return tour;
+  // }
+  // std::list<Node> notVisitedCities = cities;
   
-  for(auto city : notVisitedCities){
-    if(city.id == start_id){
-      tour.path.push_back(city);
-      tour.weights.push_back(0);
-      tour.total_distance = 0;
-      notVisitedCities.remove(city);
-      break;
-    }
-  }
-  while(!notVisitedCities.empty()){
-    Node currentCity = tour.path.back();
-    Node nearestCity = getNearestCity(notVisitedCities, currentCity);
-    tour.path.push_back(nearestCity);
-    tour.weights.push_back(currentCity.distance(nearestCity));
-    tour.total_distance += currentCity.distance(nearestCity);
-    notVisitedCities.remove(nearestCity);
-  }
-  tour.weights.push_back(tour.path.back().distance(tour.path.front()));
-  tour.total_distance += tour.path.back().distance(tour.path.front());
+  // for(auto city : notVisitedCities){
+  //   if(city.id == start_id){
+  //     tour.path.push_back(city);
+  //     tour.weights.push_back(0);
+  //     tour.total_distance = 0;
+  //     notVisitedCities.remove(city);
+  //     break;
+  //   }
+  // }
+  // while(!notVisitedCities.empty()){
+  //   Node currentCity = tour.path.back();
+  //   Node nearestCity = getNearestCity(notVisitedCities, currentCity);
+  //   tour.path.push_back(nearestCity);
+  //   tour.weights.push_back(currentCity.distance(nearestCity));
+  //   tour.total_distance += currentCity.distance(nearestCity);
+  //   notVisitedCities.remove(nearestCity);
+  // }
+  // tour.weights.push_back(tour.path.back().distance(tour.path.front()));
+  // tour.total_distance += tour.path.back().distance(tour.path.front());
 
   return tour;
   
